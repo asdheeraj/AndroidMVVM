@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SampleMVVM</string>
+
+    <!-- Login -->
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
+    <string name="login_error_message">Invalid Credentials. Please try again!</string>
+
+    <!-- Dashboard -->
+    <string name="welcome_admin">Welcome Admin!</string>
+</resources>
