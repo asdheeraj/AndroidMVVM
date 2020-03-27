@@ -1,4 +1,4 @@
-package com.dheeraj.samplemvvm.login
+package com.dheeraj.samplemvvm.app.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.dheeraj.samplemvvm.R.layout
 import com.dheeraj.samplemvvm.R.string
-import com.dheeraj.samplemvvm.dashboard.DashboardActivity
+import com.dheeraj.samplemvvm.app.ui.login.LoginViewModel
+import com.dheeraj.samplemvvm.app.ui.movies.MoviesActivity
 import kotlinx.android.synthetic.main.activity_login.button_login
 import kotlinx.android.synthetic.main.activity_login.login_edit_text
 import kotlinx.android.synthetic.main.activity_login.passord_edit_text
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResult.observe(this, Observer { result ->
             result?.let {
                 if (it)
-                    startActivity(Intent(this, DashboardActivity::class.java))
+                    startActivity(Intent(this, MoviesActivity::class.java))
                 else
                     Toast.makeText(this, getString(string.login_error_message), Toast.LENGTH_LONG).show()
             }

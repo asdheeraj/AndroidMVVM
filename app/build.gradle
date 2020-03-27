@@ -18,16 +18,32 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            testCoverageEnabled = true
+            buildConfigField("String", "BASE_URL", '"https://api.themoviedb.org/3/"')
+        }
+        qa {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            buildConfigField("String", "BASE_URL", '"https://api.themoviedb.org/3/"')
+        }
         release {
             minifyEnabled false
+            shrinkResources false
+            debuggable false
+            testCoverageEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", '"https://api.themoviedb.org/3/"')
         }
     }
 
     // Enable data binding for this project
     dataBinding {
         enabled = true
-
     }
 }
 
@@ -36,6 +52,7 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api 'androidx.core:core-ktx:1.2.0'
     api LibDeps.kotlin
+    api LibDeps.coroutines
     api AppDeps.appCompat
     api LibDeps.koin
     api LibDeps.koinCore

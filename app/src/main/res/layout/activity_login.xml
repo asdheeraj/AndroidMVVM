@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dheeraj.samplemvvm.login.LoginViewModel" />
+            type="com.dheeraj.samplemvvm.app.ui.login.LoginViewModel" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:padding="@dimen/space_4x"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".login.LoginActivity">
+        tools:context="com.dheeraj.samplemvvm.app.login.LoginActivity">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
