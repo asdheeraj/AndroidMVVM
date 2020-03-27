@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SampleMVVM</string>
+    <string name="app_name">AndroidMVVM</string>
 
     <!-- Login -->
     <string name="username">username</string>
