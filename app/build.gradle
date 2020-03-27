@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileOptions {
         sourceCompatibility 1.8
@@ -22,25 +26,53 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            testCoverageEnabled = true
+            resValue("string", "google_maps_key", localProperties['apiKey'])
+            buildConfigField("String", "BASE_URL", "\"" + localProperties['baseURL'] + "\"")
+            buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
+        }
+        qa {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            buildConfigField("String", "BASE_URL", "\"" + localProperties['baseURL'] + "\"")
+            buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
+        }
         release {
             minifyEnabled false
+            shrinkResources false
+            debuggable false
+            testCoverageEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"" + localProperties['baseURL'] + "\"")
+            buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
         }
     }
 
     // Enable data binding for this project
     dataBinding {
         enabled = true
-
     }
 }
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api 'androidx.core:core-ktx:1.2.0'
+    kapt LibDeps.roomAnnotations
     api LibDeps.kotlin
+    api LibDeps.coroutines
     api AppDeps.appCompat
     api LibDeps.koin
+    api LibDeps.room
+    api LibDeps.roomRuntime
+    api LibDeps.lifeCycleCommon
+    api LibDeps.lifeCycleExtn
+    api LibDeps.lifecycleRuntime
+    api LibDeps.lifeCycleliveData
     api LibDeps.koinCore
     api LibDeps.koinScope
     api AppDeps.koinViewModel

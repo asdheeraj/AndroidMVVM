@@ -1,9 +1,11 @@
 object Versions {
     const val kotlinLib = "1.3.21"
+    const val kotlin_couroutines = "1.3.5"
+    const val room = "2.2.5"
     const val minSDK = 23
     const val targetSDK = 28
     const val compileSDK = 28
-    const val retrofit = "2.5.0"
+    const val retrofit = "2.6.0"
     const val gson = "2.8.5"
     const val gsonConverter = "2.5.0"
     const val httpLogging = "3.12.0"
@@ -15,8 +17,8 @@ object Versions {
     const val appCompat = "1.0.2"
     const val materialComponents = "1.0.0"
     const val rxAndroidTest = "3.2.0"
-    const val archComp = "2.0.0"
-    const val archExt = "2.0.0"
+    const val archComp = "2.2.0"
+    const val archExt = "2.2.0"
     const val constraintLayout = "1.1.3"
     const val jodaTime = "2.10.1"
     const val navigationGraph= "2.1.0-alpha02"
@@ -33,6 +35,10 @@ object Versions {
 
 object LibDeps {
     val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinLib}"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_couroutines}"
+    val room = "androidx.room:room-ktx:${Versions.room}"
+    val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+    val roomAnnotations = "androidx.room:room-compiler:${Versions.room}"
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
     val gson = "com.google.code.gson:gson:${Versions.gson}"
@@ -51,6 +57,7 @@ object LibDeps {
     val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime:${Versions.archComp}"
     val lifeCycleExtn = "androidx.lifecycle:lifecycle-extensions:${Versions.archExt}"
     val lifeCycleCommon = "androidx.lifecycle:lifecycle-common:${Versions.archComp}"
+    val lifeCycleliveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.archComp}"
     val jodaTime = "joda-time:joda-time:${Versions.jodaTime}"
     val workManager = "androidx.work:work-runtime-ktx:${Versions.workManager}"
     val powerMockitoCore = "org.powermock:powermock-core:${Versions.powerMokito}"

@@ -1,5 +1,6 @@
-package com.dheeraj.samplemvvm.login
+package com.dheeraj.samplemvvm.app.login
 
+import com.dheeraj.samplemvvm.app.ui.login.LoginViewModel
 import org.junit.Assert.*
 
 import org.junit.*
