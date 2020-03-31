@@ -1,9 +1,10 @@
 object Versions {
     const val kotlinLib = "1.3.21"
+    const val kotlin_couroutines = "1.3.5"
     const val minSDK = 23
     const val targetSDK = 28
     const val compileSDK = 28
-    const val retrofit = "2.5.0"
+    const val retrofit = "2.6.0"
     const val gson = "2.8.5"
     const val gsonConverter = "2.5.0"
     const val httpLogging = "3.12.0"
@@ -33,6 +34,7 @@ object Versions {
 
 object LibDeps {
     val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinLib}"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_couroutines}"
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
     val gson = "com.google.code.gson:gson:${Versions.gson}"

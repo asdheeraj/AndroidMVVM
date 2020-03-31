@@ -1,4 +1,4 @@
-package com.dheeraj.samplemvvm.login
+package com.dheeraj.samplemvvm.app.ui.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
