@@ -15,7 +15,17 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "2.7"
+}
+
 allprojects {
+    sonarqube {
+        properties {
+            property "sonar.language", "java"
+            property "sonar.sources", "src/main"
+        }
+    }
     repositories {
         google()
         jcenter()
