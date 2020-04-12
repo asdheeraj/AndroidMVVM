@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 /**
  * A view model class where all the Business logic wrt the login functionality is handled
  */
-open class LoginViewModel: ViewModel() {
+class LoginViewModel: ViewModel() {
 
     val loginResult = MutableLiveData<Boolean>()
 

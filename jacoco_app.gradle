@@ -1,0 +1,110 @@
+apply plugin: 'jacoco'
+jacoco {
+    toolVersion = "0.8.0"
+    reportsDir = file("$buildDir/reports")
+}
+/**
+ * The correct path of the report is $rootProjectDir/app/build/reports/jacoco_app/index.html
+ * to run this task use: ./gradlew app:clean app:jacocoTestReport
+ */
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) { //we use "debug" build type for test coverage (can be other)
+    group = "reporting"
+    description = "Generate unified Jacoco code coverage report"
+
+    reports {
+        xml.enabled false
+        csv.enabled false
+    }
+
+    def fileFilter = [
+            '**/*Test*.*',
+            '**/AutoValue_*.*',
+            '**/*JavascriptBridge.class',
+            '**/R.class',
+            '**/R$*.class',
+            '**/Manifest*.*',
+            'android/**/*.*',
+            '**/databinding',
+            '**/*DataBinderMapperImpl*',
+            '**/*BR*',
+            '**/*Decorator*',
+            '**/*Activity*',
+            '**/*Fragment*',
+            '**/activities',
+            '**/fragments',
+            '**/*Listener*',
+            '**/*module.kt',
+            '**/BuildConfig.*',
+            '**/*$ViewBinder*.*',
+            '**/*$ViewInjector*.*',
+            '**/Lambda$*.class',
+            '**/Lambda.class',
+            '**/*Lambda.class',
+            '**/*Lambda*.class',
+            '**/model',
+            '**/entity',
+            '**/*$InjectAdapter.class',
+            '**/*$ModuleAdapter.class',
+            '**/*$ViewInjector*.class',
+            '**/TypeAliases.kt',
+            '**/utils',
+            '**/network',
+            '**/exception',
+            '**/database',
+            '**/step',
+            '**/realm',
+            '**/io/realm',
+            '**/baseAdapters',
+            '**/*MyPathSDK*',
+            '**/*Core*',
+            '**/*DataBindingInfo*',
+            '**/DPSApplication*',
+            '**/ModuleKt*',
+            '**/RealmExtensionsKt*',
+            '**/FragmentExtentionsKt*',
+            '**/ViewExtensionsKt*',
+            '**/BiometricExtentionsKt*',
+            '**/TextWatcherAdapter*',
+            '**/SpinnerAdapter*',
+            '**/KeyStoreManager*',
+            '**/ResourceManager*',
+            '**/accountModule*',
+            '**/base*',
+            '**/notificationManagerModule*',
+            '**/views',
+            '**/ContextExtensionsKt*',
+            '**/userProfileModule*',
+            '**/appDatabaseModule',
+            '**/PermissionUtil',
+            '**/ErrorUtils',
+            '**/BiometicUtils',
+            '**/DataBindingAdapters',
+            '**/com/dps/databinding/**',
+            '**/com/dps/app/widget/**',
+            '**/com/dps/app/ui/dashboard/**',
+            '**/com/dps/app/base/recycler/rowtype/**',
+            '**/com/dps/app/ui/overlay/recycler/**',
+            '**/com/dps/app/ui/overlay/model/**',
+            '**/com/dps/app/ui/settings/adapter/**',
+            '**/com/dps/app/ui/settings/model/**',
+            '**/com/dps/app/ui/epro/adapter/**',
+            '**/com/dps/app/ui/epro/model/**',
+            '**/com/dps/app/ui/aboutunify/model/**',
+            '**/com/dps/repository/core/**',
+            '**/com/dps/app/ui/medication/receiver/**',
+            '**/com/dps/app/ui/task/**',
+            '**/com/dps/app/ui/medication/**',
+            '**/com/dps/app/ui/appointment/**'
+    ]
+
+    def javaDebugTree = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: fileFilter) //we use "debug" build type for test coverage (can be other)
+    def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.from = files([mainSrc])
+    classDirectories.from = files([javaDebugTree, kotlinDebugTree]) // we need to target both java and kotlin build folder
+    executionData.from = fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec", //we use "debug" build type for test coverage (can be other)
+            "outputs/code-coverage/connected/*coverage.ec"
+    ])
+}

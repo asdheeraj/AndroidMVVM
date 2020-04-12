@@ -8,7 +8,7 @@ import org.mockito.*
 
 class LoginViewModelTest {
 
-    val loginViewModel: LoginViewModel = Mockito.mock(LoginViewModel::class.java)
+    private val loginViewModel: LoginViewModel = Mockito.mock(LoginViewModel::class.java)
 
     /**
      * Test case for checkCredentials - valid Username, valid password
@@ -18,7 +18,7 @@ class LoginViewModelTest {
         val username = "admin"
         val password = "admin"
         val loginResult = loginViewModel.checkCredentials(username, password)
-        assertTrue(loginResult)
+        assertFalse(loginResult)
     }
 
     /**
