@@ -25,6 +25,19 @@ allprojects {
         properties {
             property "sonar.language", "kotlin"
             property "sonar.sources", "src/main/java"
+            property "sonar.test.inclusions", "**/*Test*/**"
+            property "sonar.sourceEncoding", "UTF-8"
+            property "sonar.sources", "src/main/java"
+            property "sonar.exclusions", '**/*Test*/**,' +
+                    '*.json,' +
+                    '**/*test*/**,' +
+                    '**/.gradle/**,' +
+                    '**/R.class'+
+                    '**ClassPath'+
+                    '**Plugins' +
+                    '**/precompiled/**' +
+                    '**/dsl/**'+
+                    '**/wrapper'
         }
     }
     repositories {

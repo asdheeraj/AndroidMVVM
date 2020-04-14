@@ -41,8 +41,7 @@ val networkModule = module {
 
     factory(named(HTTP_CLIENT)) {
         providesOkHttpClient(
-            get(named(HTTP_LOGGING)), get(named(GENERAL_INTERCEPTOR)),
-            get(named(API_INTERCEPTOR)), get(named(AUTH_INTERCEPTOR))
+            get(named(HTTP_LOGGING))
         )
     }
 
@@ -76,21 +75,13 @@ fun provideRetrofit(
  * Provides OkHttpClient dependency.
  *
  * @param httpLoggingInterceptor Http Logging Interceptor
- * @param apiKeyInterceptor ApiKeyInterceptor
- * @param authenticatorInterceptor AuthenticationInterceptor
  *
  */
 fun providesOkHttpClient(
-    httpLoggingInterceptor: HttpLoggingInterceptor,
-    statusInterceptor: GeneralInterceptor,
-    apiKeyInterceptor: APIKeyInterceptor,
-    authenticatorInterceptor: AuthenticatorInterceptor
+    httpLoggingInterceptor: HttpLoggingInterceptor
 ): OkHttpClient {
     return OkHttpClient.Builder().connectTimeout(60L, TimeUnit.SECONDS)
         .readTimeout(60L, TimeUnit.SECONDS).addInterceptor(httpLoggingInterceptor)
-       // .addInterceptor(statusInterceptor)
-       //.addInterceptor(apiKeyInterceptor)
-       // .addInterceptor(authenticatorInterceptor)
         .build()
 }
 

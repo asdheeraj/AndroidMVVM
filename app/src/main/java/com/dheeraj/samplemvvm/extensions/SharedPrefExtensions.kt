@@ -16,7 +16,6 @@ inline fun <reified T> SharedPreferences.get(key: String, defaultValue: T): T {
         Int::class -> return this.getInt(key, defaultValue as Int) as T
         Long::class -> return this.getLong(key, defaultValue as Long) as T
         String::class -> return this.getString(key, defaultValue as String) as T
-        else -> {}
     }
 
     return defaultValue
@@ -36,7 +35,6 @@ inline fun <reified T> SharedPreferences.put(key: String, value: T) {
         Int::class -> editor.putInt(key, value as Int)
         Long::class -> editor.putLong(key, value as Long)
         String::class -> editor.putString(key, value as String)
-        else -> {}
     }
     editor.apply()
 }

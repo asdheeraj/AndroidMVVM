@@ -9,8 +9,8 @@ apply plugin: 'kotlin-kapt'
 apply from: '../jacoco_app.gradle'
 
 
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+//def localProperties = new Properties()
+//localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
 android {
     compileOptions {
@@ -33,16 +33,15 @@ android {
             shrinkResources false
             debuggable true
             testCoverageEnabled = true
-            resValue("string", "google_maps_key", localProperties['apiKey'])
-            buildConfigField("String", "BASE_URL", "\"" + localProperties['baseURL'] + "\"")
-            buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "API_KEY", "\"f559cbf805979a54e983cb35c5cfbc26\"")
         }
         qa {
             minifyEnabled false
             shrinkResources false
             debuggable true
-            buildConfigField("String", "BASE_URL", "\"" + localProperties['baseURL'] + "\"")
-            buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "API_KEY", "\"f559cbf805979a54e983cb35c5cfbc26\"")
         }
         release {
             minifyEnabled false
@@ -50,8 +49,8 @@ android {
             debuggable false
             testCoverageEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"" + localProperties['baseURL'] + "\"")
-            buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "API_KEY", "\"f559cbf805979a54e983cb35c5cfbc26\"")
         }
     }
 
